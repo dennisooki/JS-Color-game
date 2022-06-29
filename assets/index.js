@@ -30,6 +30,15 @@ function setColors() {
     colorsBlocks[i].style.backgroundColor = colors[i];
   }
 }
+function setEqual(j) {
+	for (let i = 0; i < colorsBlocks.length; i++) {
+		colorsBlocks[i].style.backgroundColor = j;
+	}
+}
+for (let i = 0; i < diffEls.length; i++) {
+  diffEls[i].addEventListener("click", setNumberOfTiles);
+}
+
 
 function pickColors() {
   for (var i = 0; i < n; i++) {
@@ -46,8 +55,15 @@ function random(r) {
 }
 
 function setNumberOfTiles(e) {
-  // your code here
+  for (let i = 0; i < diffEls.length; i++) {
+		diffEls[i].classList.remove("active");
+	}
+	e.target.classList.add("active");
+  n = document.querySelector(".diff__btn.active").textContent;
+	resetGame();
 }
+let text = document.querySelector(".status");
+let rgb = document.querySelector(".rgb");
 
 function createBlocks(num) {
   colorsEl.innerHTML = "";
@@ -59,7 +75,23 @@ function createBlocks(num) {
     colorsEl.appendChild(block);
   }
   colorsBlocks = document.querySelectorAll(".colors__block");
-  for (var i = 0; i < colorsBlocks.length; i++) {
-    colorsBlocks[i].addEventListener("click", checkColors);
-  }
+  for (let i = 0; i < colorsBlocks.length; i++) {
+    colorsBlocks[i].addEventListener("click", () => {
+      if ((colorsBlocks[i].style.backgroundColor) === rgb.textContent) {
+        setEqual(rgb.textContent);
+        text.textContent = "Congrats You nailed it";
+        setTimeout(() => {
+          location.reload()
+        }
+            ,2000
+          ) 
+      }
+      else {
+        colorsBlocks[i].style.backgroundColor = '#fff'
+        text.textContent='Sorry Wrong answer try again'
+      }
+      
+    });
+
+	}
 }
