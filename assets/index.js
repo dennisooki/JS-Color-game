@@ -78,7 +78,7 @@ function createBlocks(num) {
     colorsBlocks[i].addEventListener("click", () => {
       if ((colorsBlocks[i].style.backgroundColor) === rgb.textContent) {
         setEqual(rgb.textContent);
-        text.textContent = "Congrats! Correct Color";
+        text.textContent = "Congrats!!! Correct Color";
         setTimeout(() => {
           location.reload()
         }
