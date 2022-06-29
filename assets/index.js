@@ -9,9 +9,7 @@ var colors = [];
 createBlocks(n);
 resetGame();
 
-function checkColors(e) {
-  // your code here
-}
+
 
 function resetGame() {
   createBlocks(n);
@@ -25,11 +23,7 @@ function resetGame() {
     "Try to guess the right color based on the RGB value by clicking on the blocks.";
 }
 
-function setColors() {
-  for (var i = 0; i < colorsBlocks.length; i++) {
-    colorsBlocks[i].style.backgroundColor = colors[i];
-  }
-}
+
 function setEqual(j) {
 	for (let i = 0; i < colorsBlocks.length; i++) {
 		colorsBlocks[i].style.backgroundColor = j;
@@ -53,6 +47,11 @@ function randomColor() {
 function random(r) {
   return Math.floor(Math.random() * r);
 }
+function setColors() {
+  for (var i = 0; i < colorsBlocks.length; i++) {
+    colorsBlocks[i].style.backgroundColor = colors[i];
+  }
+}
 
 function setNumberOfTiles(e) {
   for (let i = 0; i < diffEls.length; i++) {
@@ -68,7 +67,7 @@ let rgb = document.querySelector(".rgb");
 function createBlocks(num) {
   colorsEl.innerHTML = "";
 
-  // here is an example of a loop that is used to create the blocks of color depending on you choice ie 6 or 9, however you need to add event listeners
+  
   for (var i = 0; i < num; i++) {
     var block = document.createElement("div");
     block.classList.add("colors__block");
@@ -79,7 +78,7 @@ function createBlocks(num) {
     colorsBlocks[i].addEventListener("click", () => {
       if ((colorsBlocks[i].style.backgroundColor) === rgb.textContent) {
         setEqual(rgb.textContent);
-        text.textContent = "Congrats You nailed it";
+        text.textContent = "Congrats! Correct Color";
         setTimeout(() => {
           location.reload()
         }
@@ -88,7 +87,7 @@ function createBlocks(num) {
       }
       else {
         colorsBlocks[i].style.backgroundColor = '#fff'
-        text.textContent='Sorry Wrong answer try again'
+        text.textContent='Wrong Color,Try again'
       }
       
     });
